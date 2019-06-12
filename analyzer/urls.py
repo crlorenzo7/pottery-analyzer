@@ -14,4 +14,6 @@ urlpatterns = [
     path('files/<id>/',api.manage_http_files_id,name="manage_http_files_id"),
     re_path(r'^login/?$',api.login,name="login"),
     re_path(r'^signup/?$',api.signup,name="signup"),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
