@@ -1,0 +1,95 @@
+<section id="new-model-process" class="fill">
+    <div class="cabecera">
+        <h2 class="titulo-seccion">Crear un modelo nuevo</h2>
+        <h3 class="subtitulo-seccion" id="sts">cargar imagen del modelo</h3>
+    </div>
+    <div class="cuerpo">
+        <div class="scroller" id="snmp">
+            <div class="pagina" id="cover-carga-imagen">
+               
+                <div class="form-carga">
+                    <div class="boton" data-type="boton" data-action="load-image">
+                        <p class="label">cargar imagen</p>
+                    </div>
+                    <input type="file" id="input-imagen" name="input-imagen" accept="image/png, image/jpeg">
+                    <!--<p class="subtexto">selecciona la imagen de la figura</p>-->
+                    <p class="texto-seleccion" id="imselect">no se ha seleccionado ninguna imagen</p>
+                </div>
+                
+            </div>
+            <div class="pagina" id="cover-canvas">
+                <div class="canvas-zone">
+                    <canvas id="figura-completa"></canvas>
+                    <canvas id="eje-simetria"></canvas>
+                </div>
+                <div class="canvas-info" id="marco-canvas-figura">
+                    <div class="cover-altura">
+                        <p class="label">ALTURA</p>
+                        <div class="zona-input">
+                            <div class="cover">
+                                <input type="number" name="altura" min="0.00" max="99.99" id="altura" step="0.01" placeholder="0.00">
+                            </div>
+                            <p class="unidad">cm</p>
+                        </div>
+                    </div>
+                    <div class="cover-canvas-escala">
+                        <canvas id="canvas-escala"></canvas>
+                    </div>
+                    <div id="img-muestra-escala">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="progress">
+            <div class="progress-fill" id="progress-process"></div>
+        </div>
+        <div class="info">
+            <ul class="steps" id="steps-list">
+                <li class="item" data-estado="activo" data-order="0">
+                    <div class="number">1</div>
+                    <p class="label">cargar imagen</p>
+                </li>
+                <li class="item" data-estado="inactivo" data-order="1">
+                    <div class="number">2</div>
+                    <p class="label">seleccionar escala</p>
+                </li>
+                <li class="item" data-estado="inactivo" data-order="2">
+                    <div class="number">3</div>
+                    <p class="label">seleccionar eje de simetria</p>
+                </li>
+            </ul>
+            <div class="controles" id="steps-controller">
+                <div class="boton" data-type="boton" data-action="finalizar">finalizar</div>
+                <div class="boton" data-type="boton" data-action="next">siguiente</div>
+                <div class="boton" data-type="boton" data-action="back">anterior</div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="caballete">
+        <canvas class="lienzo" id="negativo"></canvas>
+        <canvas width="400px" height="400px" class="lienzo" id="exposicion"></canvas>
+        <div class="cover">
+            <div data-action="load-image" data-type="boton" class="boton">
+                <div class="label">cargar imagen</div>
+                
+            </div>
+            <input type="file" id="input-imagen" name="input-imagen" accept="image/png, image/jpeg">
+        </div>
+    </div>
+    <div class="control-proceso">
+        <div class="descripcion-proceso">
+            
+        </div>
+        <div class="cubierta">
+            <div data-type="boton" data-estado="activo" data-action="load-image" class="boton">recargar imagen</div>
+            <div data-type="boton" data-estado="inactivo" data-action="atras" class="boton">deshacer</div>
+            <div data-type="boton" data-estado="activo" data-action="continuar" class="boton">continuar</div>
+        </div>
+    </div>-->
+</section>
+<div data-type="boton" data-action="close-popup" class="boton-cerrar">
+    <i class="pottery-icons">salir</i>
+</div>

@@ -1,0 +1,45 @@
+
+<div id="<%= seccion.nombre %>" class="fill login-screen">
+    <div class="cuadro-login">
+        <div class="logo">
+            <figure class="icono">
+                <img src="static/static/img/icono.svg" />
+            </figure>
+            <h1>Pottery<span>Analyzer</span></h1>
+        </div>
+        <h2 class="titulo"><%= seccion.titulo %></h2>
+        <div class="marco-formulario">
+            <form id="<%=seccion.form.id %>" name="<%=seccion.form.id %>" method="<%= seccion.form.method %>" action="<%=seccion.form.action %>">
+                <% for(var i=0;i<seccion.form.fields.length;i++){ %>
+                <div class="linea">
+                    <div class="cover-linea">
+                        <figure class="icon">
+                            <i class="pottery-icons"><%= seccion.form.fields[i].icon %></i>
+                        </figure>
+                        <div class="cover-input">
+                            <% if(seccion.form.fields[i].fieldType=='input'){ %>
+                            <input <%= seccion.form.fields[i].required %> type="<%= seccion.form.fields[i].type %>" name="<%= seccion.form.fields[i].id %>" id="<%= seccion.form.fields[i].id %>" placeholder="<%= seccion.form.fields[i].placeholder %>" value="<%= seccion.form.fields[i].value %>" >
+                            <% } %>
+                            <% if(seccion.form.fields[i].fieldType=='select'){ %>
+                            <select <%= seccion.form.fields[i].required %> name="<%= seccion.form.fields[i].id %>" id="<%= seccion.form.fields[i].id %>" >
+                                <% for(var j=0;j<seccion.form[i].options.length;j++){ %>
+                                    <option <%=seccion.form.fields[i].options[j].selected %> value="<%= seccion.form.fields[i].options[j].value %>"><%= seccion.form.fields[i].options[j].label %></option>
+                                <% } %>
+                            </select>
+                            <% } %>
+                        </div>
+                        
+                    </div>
+                </div>
+                <% } %>
+                <div class="linea-boton">
+                    <button class="boton-submit" type="submit"><%= seccion.form.submitLabel %></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="control-lateral">
+        <div class="boton" data-action="atras" id="atras-button">Atras</div>
+    </div>
+    
+</div>

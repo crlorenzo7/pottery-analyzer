@@ -1,0 +1,12 @@
+<div class="<%=name %>">
+    <ul>
+        <% for(var i=0; i < menu.length;i++){ 
+            var estado='inactivo';    
+            if(i==0) {
+                estado='activo';
+            }   
+        %>
+        <li data-estado="<%= estado %>" data-action="<%= menu[i].value %>"><%= menu[i].nombre %></li>
+        <% } %>
+    </ul>
+</div>

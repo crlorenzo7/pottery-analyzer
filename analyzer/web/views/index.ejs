@@ -1,0 +1,7 @@
+<section class="pantalla" data-estado="visible" visibilidad="visible">
+    <% Utils.include('views/landing.ejs','#wrapper > .pantalla[visibilidad="visible"]',{menu:MENU_APP}) %>
+</section>
+<section class="pantalla transicion" data-estado="invisible" visibilidad="invisible"></section>
+<footer id="main-footer">
+    <% Utils.include('views/componentes/footer.ejs','#main-footer') %>
+</footer>

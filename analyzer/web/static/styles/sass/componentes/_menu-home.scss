@@ -1,0 +1,41 @@
+.menu-home{
+    position:relative;
+    & > ul{
+        position:relative;
+        & > li{
+            font-size:14px;
+            text-align: inherit;
+            font-weight: 100;
+            height:40px;
+            box-sizing: border-box;
+            padding-left:70px;
+            width:calc(100% + 35px);
+            display:flex;
+            position:relative;
+            left:-35px;
+
+
+            align-items: center;
+
+            &[data-estado="activo"]{
+                color:$resaltado;
+                @include animacion(250ms,ease-in);
+                background-color:rgba($optionSelected,.7);
+                border-right:solid 4px $resaltado;
+            }
+
+            &[data-estado="inactivo"]{
+                cursor:pointer;
+                color:$subtitulo;
+                @include animacion(250ms,ease-in);
+                //background-color:$enfasis;
+                &:hover{
+                    background-color:rgba($optionSelected,.3);
+                    color:white;
+                    border-right:solid 4px $resaltado;
+                    transform:translateX(35px);
+                }
+            }
+        }
+    }
+}

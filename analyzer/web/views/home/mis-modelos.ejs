@@ -1,0 +1,104 @@
+<div id="mis-modelos" class="fill">
+    <header>
+        <div class="title-bar">
+            <h2 class="titulo"><%- ruta %></h2>
+            <div id="contador" class="contador">
+                <%
+                    var porcentaje=(app.filesystem.getTotalModelos()/MAX_MODELS)*100;
+                %>
+                <div class="cover-progress">
+                    <div class="item-progress">
+                        <div class="progress-bar">
+                            <div class="fill-bar" style="width:<%=porcentaje %>%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info">
+                    <p class="texto"><%=app.filesystem.getTotalModelos() %> / <span class="resaltado"> <%= MAX_MODELS %></p>
+                </div>
+            </div>
+        </div>
+        <div class="toolbar">
+            <ul id="controls-bar">
+                <li class="boton" data-action="new" data-type="fixed" data-estado="activo">
+                    <figure>
+                        <i class="pottery-iconsnew"></i>
+                    </figure>
+                    <p class="label">Nuevo Modelo</p>
+                </li>
+                <li class="boton" data-action="new-folder" data-type="fixed" data-estado="activo">
+                    <figure>
+                        <i class="pottery-icons">new-folder</i>
+                    </figure>
+                    <p class="label">Nueva Carpeta</p>
+                </li>
+                <li class="boton" data-action="clear" data-estado="inactivo">
+                    <figure>
+                        <i class="pottery-icons">eliminar</i>
+                    </figure>
+                    <p class="label">Borrar Seleccion</p>
+                </li>
+                <li class="boton hidden" data-action="open" data-estado="inactivo">
+                    <figure>
+                        <i class="pottery-icons">editar</i>
+                    </figure>
+                    <p class="label">Abrir Modelo</p>
+                </li>
+                <li class="boton hidden" data-action="export" data-estado="inactivo">
+                    <figure>
+                        <i class="pottery-icons">exportar</i>
+                    </figure>
+                    <p class="label">Exportar a csv</p>
+                </li>
+                <li class="boton hidden" data-action="delete" data-estado="inactivo">
+                    <figure>
+                        <i class="pottery-icons">eliminar</i>
+                    </figure>
+                    <p class="label">Eliminar</p>
+                </li>
+            </ul>
+
+            <div class="seccion-buscador">
+                <div class="cover-buscador">
+                    <figure>
+                        <i class="pottery-icons">lupa</i>
+                    </figure>
+                    <div class="cover-input">
+                        <input type="search" id="buscador" placeholder="buscar...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="grid" data-tipo="mosaic">
+        <% for(var i=0;i<app.filesystem.getFolders().length;i++){ %> 
+        <div class="folder"  draggable="true" data-estado="inactivo" data-orden="<%=i %>" data-folder="<%=app.filesystem.getFolders()[i].id %>">
+            <div class="principal">
+                <figure>
+                    <img src="static/static/img/folder.png" />
+                </figure>
+                <div class="info">
+                    <h3 contenteditable="true" class="titulo"><%=app.filesystem.getFolders()[i].titulo %></h3>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <% for(var i=0;i<app.filesystem.getModels().length;i++){ %> 
+        <div class="modelo" draggable="true" data-estado="inactivo" data-id="<%=app.filesystem.getModels()[i].id %>">
+            <div class="principal">
+                <figure>
+                    <img src="<%=app.filesystem.getModels()[i].figura.imagen %>" />
+                </figure>
+                <div class="info">
+                    <h3 contenteditable="true" class="titulo"><%=app.filesystem.getModels()[i].titulo %></h3>
+                    <p class="date"><%= Utils.time._stampToDateString(app.filesystem.getModels()[i].fechaCreacion) %></p>
+                </div>
+                <div class="select-button"></div>
+            </div>
+            <div class="cover">
+                
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>

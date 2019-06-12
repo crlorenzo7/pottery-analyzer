@@ -1,0 +1,28 @@
+<% 
+    var action='delete';
+    if(tipo=='folder'){
+        action='delete-folder';
+    }
+%>
+<ul class="menu-contextual">
+    <% if(tipo=='modelo'){ %>
+    <li class="item" data-action="open">
+        <figure class="icono">
+            <i class="pottery-icons">editar</i>
+        </figure>
+        <p class="label">Abrir</p>
+    </li>      
+    <li class="item" data-action="download">
+        <figure class="icono">
+            <i class="pottery-icons">download</i>
+        </figure>
+        <p class="label">Descargar como imagen</p>
+    </li> 
+    <% } %>
+    <li class="item" data-action="<%= action %>">
+        <figure class="icono">
+            <i class="pottery-icons">eliminar</i>
+        </figure>
+        <p class="label">Eliminar</p>
+    </li>     
+</ul>

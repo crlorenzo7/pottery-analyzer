@@ -1,0 +1,28 @@
+
+.footer{
+    height:100%;
+
+    & > .zona-social{
+        height:100%;
+        float:right;
+
+        & > ul{
+            height:100%;
+
+            & > .item-social{
+                height:20px;
+                width:20px;
+                float:left;
+                margin-left:10px;
+                color:$subtitulo;
+                cursor:pointer;
+                font-size: 20px;
+                @include animacion(250ms,ease-in);
+
+                &:hover{
+                    color:white;
+                }
+            }
+        }
+    }
+}

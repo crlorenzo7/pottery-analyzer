@@ -1,0 +1,68 @@
+<%
+    var data_model=-1;
+    if(typeof id!='undefined'){
+        data_model=id;
+    }
+%>
+<div class="canvas" id="vcanvas" data-model="<%=data_model %>">
+
+</div>
+<div class="canvas" id="rvcanvas" style="display:none" data-model="<%=data_model %>">
+
+</div>
+<header>
+    <div class="branding">
+        <h2 class="branding">PotteryAnalyzer</h2>
+    </div>
+    <div data-type="boton" data-action="cerrar" class="boton">
+        <i class="pottery-icons">salir</i>
+    </div>
+    <h2 class="titulo-modelo" contentEditable="true"><%= titulo %></h2>
+</header>
+<footer>
+    <div class="info">
+        <div class="datos" id="datos-figura">
+            <p class="linea" data-prop="alto"><span class="label">Alto:</span><span class="value"> 30</span> cm</p>
+            <p class="linea" data-prop="diametro"><span class="label">Diametro:</span><span class="value">60</span> cm</p>
+            <p class="linea" data-prop="volumen-material"><span class="label">Volumen vacio:</span><span class="value">135</span> cc</p>
+            <p class="linea" data-prop="capacidad"><span class="label">Capacidad:</span><span class="value">300</span> cc</p>
+        </div>
+        <div class="controles">
+        <%
+            var action="save";
+            if(data_model!=-1){
+                action="save_and_update";
+            }
+        %>
+            <div class="boton" data-type="boton" data-action="<%=action %>">
+                <i class="pottery-icons">save</i>
+            </div>
+            <div class="boton" data-type="boton" data-action="download">
+                <i class="pottery-icons">download</i>
+            </div>
+            <div class="boton" data-type="boton" data-action="downloadPly">
+                <i class="">3D</i>
+            </div>
+        </div>
+    </div>
+    <ul class="texturas">
+        <% for(i=0;i<TEXTURAS.length;i++){ %>
+        <li class="item" data-value="static/static/img/texturas/<%= TEXTURAS[i].img %>">
+            <figure class="imagen-textura">
+                <img src="static/static/img/texturas/<%= TEXTURAS[i].img %>" />
+            </figure>
+        </li>
+        <% } %>
+    </ul>
+</footer>
+<div id="visible-menu">
+    <div data-type="boton" class="boton" data-action="solid-point" data-estado="activo">
+        <figure class="icon"><img src="static/static/img/all.png" /></figure>
+    </div>
+    <div data-type="boton" class="boton" data-action="solid" data-estado="inactivo">
+        <figure class="icon"><img src="static/static/img/solid.png" /></figure>
+    </div>
+    <div data-type="boton" class="boton" data-action="point" data-estado="inactivo">
+        <figure class="icon"><img src="static/static/img/alambre.png" /></figure>
+    </div>
+</div>

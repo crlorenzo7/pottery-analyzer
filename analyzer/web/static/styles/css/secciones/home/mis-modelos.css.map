@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACI,qBAAU;EACN,MAAM,EAAC,IAAI;AAGf,oBAAS;EACL,MAAM,EAAC,iBAAiB;EACxB,UAAU,EAAC,IAAI;EACf,UAAU,EAAC,MAAM",
+"sources": ["../../../sass/secciones/home/mis-modelos.scss"],
+"names": [],
+"file": "mis-modelos.css"
+}

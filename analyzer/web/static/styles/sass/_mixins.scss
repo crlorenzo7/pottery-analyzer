@@ -1,0 +1,104 @@
+@mixin img($height,$width){
+    height:$height;
+    width:$width;
+    line-height: 0;
+    vertical-align: middle;
+}
+@mixin animacion($duracion,$easing) {
+    transition: all $duracion $easing;
+    -webkit-transition: all $duracion $easing;
+    -moz-transition: all $duracion $easing;
+    -o-transition: all $duracion $easing;
+    -ms-transition: all $duracion $easing;
+}
+
+@mixin adaptar-fondo($size,$repeat,$positionAlto:center,$positionAncho:center){
+    background-size: $size;
+    -webkit-background-size: $size;
+    -moz-background-size: $size;
+    -ms-background-size: $size;
+    -o-background-size: $size;
+    background-repeat: $repeat;
+    background-position: $positionAncho $positionAlto;
+}
+
+@mixin scroller($ancho){
+    position:relative;
+    height:100%;
+    width:$ancho;
+    left:0;
+}
+
+@mixin cover($position){
+    height:100%;
+    position:$position;
+    @if($position == absolute){
+        width:100%;
+        top:0;
+        left:0;
+    }
+}
+
+@mixin big-popup($zindex,$opacity){
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:$zindex;
+    background-color:rgba($secondary-color,$opacity);
+    display:none;
+    width:100%; 
+    height:100%;
+}
+
+
+@mixin marco($height,$width,$padding){
+    overflow:hidden;
+    position:relative;
+    height:$height;
+    width:$width;
+    padding-left:$padding;
+    padding-right:0;
+    left:-$padding;
+}
+
+
+@mixin animacion_transform($duracion,$easing){
+    transition: transform $duracion $easing;
+    -webkit-transition: -webkit-transform $duracion $easing;
+    -moz-transition: -moz-transform $duracion $easing;
+    -o-transition: -o-transform $duracion $easing;
+    -ms-transition: -ms-transform $duracion $easing;
+}
+
+@mixin pagina($width,$margin-right){
+    float: left;
+    width: $width;
+    height:  100%;
+    margin-right:$margin-right;
+    position:  relative;
+}
+
+@mixin botonRectangular($float,$margin,$margin-direction){
+    @if($float != 0){
+        float:$float;
+    }
+
+    @if($margin > 0){
+        $margin-direction:$margin;
+    }
+    padding-left:25px;
+    padding-right:25px;
+    -webkit-appearance:none;
+    outline:0;
+    box-sizing:border-box;
+    font-family: inherit;
+    cursor:pointer;
+    @include animacion(250ms,ease-in);
+
+    
+
+    &:active{
+        box-shadow:none;
+    }
+
+}
