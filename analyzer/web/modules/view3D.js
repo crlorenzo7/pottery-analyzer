@@ -53,8 +53,6 @@ class View3D{
         function calculateVolume(object){
             var volumes = 0;
         
-            //object.legacy_geometry = new THREE.Geometry().fromBufferGeometry(object.geometry);
-        
             for(var i = 0; i < object.geometry.faces.length; i++){
                 var Pi = object.geometry.faces[i].a;
                 var Qi = object.geometry.faces[i].b;

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9i71^=^anivjxq2ca(fw4fpm7_bc*i(p(*c^&zfzb9$bh2icy0'
+with open('secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
+
+with open('config.json') as f:
+    DB_SETTINGS=json.load(f)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
