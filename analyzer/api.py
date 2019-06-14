@@ -9,6 +9,7 @@ from analyzer.models.Users.User import User
 from analyzer.models.Users.UserGateway import UserGateway
 from analyzer.models.Files.File import File
 from analyzer.models.Files.FileGateway import FileGateway
+from analyzer.modules import security
 
 database=DB()
 # Create your views here.
@@ -76,13 +77,17 @@ def login(request):
         
         user=User(userGW.getUser(userJson['nick']))
         if user is not None:
-            root=filesystem.getNode(user.get_nick())
-            respuesta['user']=user.toJSON()
-            del respuesta['user']['password']
-            respuesta['root']=root
-            respuesta['totalModelos']=filesystem.getNumberOfModels(user.get_nick())
+            print(user.get_password())
+            if security.verifyPassword(userJson['password'],user.get_password()):
+                root=filesystem.getNode(user.get_nick())
+                respuesta['user']=user.toJSON()
+                del respuesta['user']['password']
+                respuesta['root']=root
+                respuesta['token']=security.generateJWT(user.get_nick())
+                respuesta['totalModelos']=filesystem.getNumberOfModels(user.get_nick())
                 
-            return JsonResponse(respuesta,status=200,safe=False)
+                return JsonResponse(respuesta,status=200,safe=False)
+            return JsonResponse({},status=401,safe=False)
         return JsonResponse(respuesta,status=404,safe=False)
     return JsonResponse({},status=404,safe=False)
 
@@ -97,6 +102,8 @@ def signup(request):
         userJson=json.loads(request.POST['user'])
             
         user=User(userJson)
+        user.set_password(security.createPassword(user.get_password()))
+        print(user.get_password())
         if not userGW.exists(user.get_nick()):
             if userGW.insertUser(user):
                 file=filesystem.create(user.get_nick())
@@ -104,6 +111,7 @@ def signup(request):
                     respuesta['user']=user.toJSON()
                     del respuesta['user']['password']
                     respuesta['root']=file.toJSON()
+                    respuesta['token']=security.generateJWT(user.get_nick())
                     respuesta['totalModelos']=0
                     
                     return JsonResponse(respuesta,status=201,safe=False)

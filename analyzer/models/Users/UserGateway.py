@@ -22,7 +22,7 @@ class UserGateway:
     
     def getUser(self,id):
         users=self.db.get_connection().users
-        user=users.find_one({'nick':id},{'_id':0,'password':0})
+        user=users.find_one({'nick':id},{'_id':0})
         return user
     
     def updateUser(self,id,user):

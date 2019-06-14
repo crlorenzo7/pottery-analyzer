@@ -30,10 +30,15 @@ class App{
         self=this;
         Access.login(user_data).then(function(data){
             self.user=new User(data.user);
-            console.log(self.user.toJson());
+            localStorage.setItem("token",data.token);
+
             self.filesystem=new Filesystem(self.user.nick,data.root,data.totalModelos);
             self._getHomeView();
-            console.log(self);
+
+        }).catch(function(err){
+            if(err.status==401){
+                alert('usuario o contraseña incorrectos');
+            }
         })
     }
 
@@ -41,8 +46,12 @@ class App{
         self=this;
         Access.signup(user_data).then(function(data){
             self.user=new User(data.user);
-            console.log(self.user.toJson());
+            localStorage.setItem("token",data.token);
+
             self.filesystem=new Filesystem(self.user.nick,data.root,data.totalModelos);
+            self._getHomeView();
+        }).catch(function(err){
+            console.log(err);
         })
     }
 
