@@ -25,7 +25,7 @@ const _IMPORTS_=[
     '/static/actions/new-model/new-model.actions.js',
     '/static/lib/utils.js',
     '/static/actions.js',
-    '/static/index.js/'
+    '/static/index.js'
 ]
 
 function importar(urls,index){
