@@ -130,8 +130,8 @@ class Filesystem{
         console.log(folderNode);
         if(typeof folderNode.hijos != 'undefined'){
             folderNode.hijos.push(modelNode);
-            folderNode.next++;
         }
+        folderNode.next++;
         this.current_node.hijos.splice(indexModel,1);
 
     }
@@ -161,8 +161,8 @@ class Filesystem{
         console.log(folderNode);
         if(typeof folderNode.hijos != 'undefined'){
             folderNode.hijos.push(modelNode);
-            folderNode.next++;
         }
+        folderNode.next++;
         this.current_node.hijos.splice(indexModel,1);
 
     }

@@ -238,7 +238,7 @@ var newModelFunctions={
         var action=$(this).attr('data-action');
         switch(action){
             case "load-image": $('#input-imagen').click();break;
-            case "close-popup":app.gesNewModel._close();break;
+            case "close-popup":NewModelFunctions._reset();$('#popup').fadeOut(500);break;
             case "next":newModelFunctions._next(); break;
             case "finalizar":
                 app._getVisorView(app.newModelAssistant.lienzo.paths[0].getPoints());
