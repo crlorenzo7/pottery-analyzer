@@ -25,18 +25,23 @@ const _IMPORTS_=[
     '/static/actions/new-model/new-model.actions.js',
     '/static/lib/utils.js',
     '/static/actions.js',
+    '/static/index.js/'
 ]
 
-function importar(url){
+function importar(urls,index){
     var script=document.createElement('script');
-    script.setAttribute('src',url+'?v='+timestamp)
+    script.setAttribute('src',urls[index]+'?v='+timestamp)
     script.setAttribute('type',"text/javascript");
     script.onload = function(){
-        console.log('Done '+url);
+        console.log('Done '+urls[index]);
+        if(index<urls.length-1){
+            importar(urls,index+1);
+        }
     }
     document.getElementsByTagName('head')[0].appendChild(script);
 }
 
-for(var i=0;i<_IMPORTS_.length;i++){
+importar(_IMPORTS_,0);
+/*for(var i=0;i<_IMPORTS_.length;i++){
     importar(_IMPORTS_[i]);
-}
+}*/
