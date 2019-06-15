@@ -3,7 +3,7 @@
         <div class="user-info">
             <div class="picture">
                 <figure>
-                    <img src="static/static/img/perfiles/rata.png" />
+                    <img src="static/static/img/perfiles/default-user.png" />
                 </figure>
             </div>
             <h2 class="username"><%= user.username %></h2>
@@ -11,9 +11,9 @@
         <div id="menu-home">
             <% Utils.templates.include('static/views/componentes/menu.ejs','#menu-home',{menu:MENU_HOME,name:'menu-home'}); %>
         </div>
-        <div id="footer-home">
+        <!--<div id="footer-home">
             <% Utils.templates.include('static/views/componentes/footer.ejs','#footer-home'); %>
-        </div>
+        </div>-->
     </aside>
     <div id="wrapper-home" class="wh">
         <% Utils.templates.include('static/views/home/mis-modelos.ejs','#wrapper-home',{modelos:modelos,ruta:ruta}); %>

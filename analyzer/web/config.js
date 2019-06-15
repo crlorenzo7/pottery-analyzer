@@ -57,13 +57,8 @@ const MENU_HOME=[
         submenu:[]
     },
     {
-        nombre:'Mi Cuenta',
-        value:'mi-cuenta',
-        submenu:[]
-    },
-    {
-        nombre:'Configuracion',
-        value:'configuracion',
+        nombre:'Cerrar Sesion',
+        value:'logout',
         submenu:[]
     }
 ];

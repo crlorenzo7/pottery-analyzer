@@ -1,6 +1,10 @@
 function homeActions(){
     $('#menu-home li').unbind();
     $('#menu-home li').click(function(){
+        if($(this).attr('data-action')=='logout'){
+            localStorage.removeItem('token');
+            window.location="/";
+        }
         if($(this).attr('data-estado')=='inactivo'){
             selectMenu(this);
         }
