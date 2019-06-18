@@ -1,5 +1,10 @@
 from analyzer.models.Users.User import User
 
+"""
+clase que encapsula las operaciones relativas a la base de datos
+que involucran a la entidad User
+"""
+
 class UserGateway:
     
     db=None

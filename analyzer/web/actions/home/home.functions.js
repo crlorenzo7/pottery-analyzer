@@ -24,6 +24,7 @@ var homeFunctions={
         $(item).attr('data-estado','activo');
     },
 
+    // mostrar menu contextual
     showContextMenu(event,item){
         if($('#context-menu').length>0){
             $('#context-menu').fadeOut(150,function(){
@@ -50,7 +51,7 @@ var homeFunctions={
     },
 
     
-
+    //seleccionar modelo de la carpeta
     selectModel(){
         var estado=$(this).attr('data-estado');
         var id=$(this).attr('data-id');
@@ -140,6 +141,7 @@ var homeFunctions={
         document.body.removeChild(link); 
     },
 
+    // abrir banner que permite introducir el titulo de la nueva carpeta
     getBannerNewFolder(){
         var saveFolder=function(nombre_carpeta){
             var file=new PotteryFile();
@@ -196,26 +198,7 @@ var homeFunctions={
                 app._getModelos();
             })
         }
-        /*var orden=parseInt($(this).attr('data-orden'));
-        if(id in app.fileSystem){
-            nodo=app.fileSystem[id];
-            app.nodoActual=nodo;
-            app._getModelos();
-        }else{
-            PAPI._getItemsFolder(id).done(function(data){
-                console.log(data);
-                var nodo=app.nodoActual.folders[orden]
-                nodo.folders=data.folder.folders;
-                nodo.modelos=data.folder.modelos;
-                nodo.total_items=data.folder.total_items;
-                console.log(nodo);
-                app.nodoActual=nodo
-                app.fileSystem[nodo.id]=nodo;
-                
-                
-                app._getModelos();
-            }).fail(function(err){console.log(err);})
-        }*/
+        
     },
 
     abrirCarpetaDesdeCabecera(){

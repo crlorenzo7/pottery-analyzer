@@ -134,7 +134,10 @@ def move(request):
         return JsonResponse({},status=200,safe=False)
     return JsonResponse({},status=404,safe=False)
 
-
+"""
+metodo que sirve para obtener la escala de la pieza ceramica,
+obtiene como resultado el numero de pixeles por centimetro de figura
+"""
 def get_size_object(request):
     respuesta={}
     
@@ -150,6 +153,11 @@ def get_size_object(request):
 
     return JsonResponse(respuesta,status=200)
 
+
+"""
+metodo que sirve para obtener el perfil de revolucion 
+de la figura ceramica a partir de una imagen
+"""
 def get_profile_object(request):
     respuesta={}
     
@@ -177,6 +185,11 @@ def getFile(request,id):
     respuesta['file']=file
     return JsonResponse(respuesta,status=200,safe=False)
 
+
+"""
+metodo que sirve para crear un archivo (modelo,carpeta) en el sistema 
+del usuario
+"""
 def insertFile(request):
     fileGW=FileGateway(database)
     file=File(json.loads(request.POST['file']))
@@ -184,6 +197,10 @@ def insertFile(request):
         return JsonResponse({'file':file.toJSON()},status=201,safe=False)
     return JsonResponse({},status=500,safe=False)
 
+
+"""
+actualizar la informacion de un archivo completo
+"""
 def updateFile(request,id):
     respuesta={}
     fileGW=FileGateway(database)
@@ -192,6 +209,9 @@ def updateFile(request,id):
     respuesta['file']=fileJson
     return JsonResponse(respuesta,status=200,safe=False)
 
+"""
+actualiza la informacion de las propiedades pasadas en el "body request" 
+"""
 def patchFile(request,id):
 
     fileGW=FileGateway(database)
@@ -200,6 +220,11 @@ def patchFile(request,id):
         return JsonResponse({},status=200,safe=False)
     return JsonResponse({},status=500,safe=False)
 
+
+"""
+elimina un archivo del sistema del usuario, en caso de ser una carpeta
+elimina tambien su contenido
+"""
 def deleteFile(request,id):
     respuesta={}
     filesystem=Filesystem(database)
@@ -207,6 +232,10 @@ def deleteFile(request,id):
         return JsonResponse(respuesta,status=200,safe=False)
     return JsonResponse(respuesta,status=500,safe=False)
 
+"""
+elimina varios archivos del sistema del usuario, en caso de ser una carpeta
+elimina tambien su contenido
+"""
 def deleteFiles(request):
     respuesta={}
     fileGW=FileGateway(database)
@@ -216,13 +245,18 @@ def deleteFiles(request):
         fileGW.deleteFile(list_files[i])
     return JsonResponse(respuesta,status=200,safe=False)
 
+"""
+filtra los archivos del usuario segun las propiedades pasadas por GET
+"""
 def listFiles(request):
     filters=json.loads(request.GET.dict())
     fileGW=FileGateway(database)
     files=fileGW.listFiles(filters)
     return JsonResponse({'files':files},status=200,safe=False)
 
-
+"""
+obtener informacion de un usuario a partir de su identificador
+"""
 def getUser(request,id):
     respuesta={}
     userGW=UserGateway(database)
@@ -231,6 +265,9 @@ def getUser(request,id):
     respuesta['user']=user
     return JsonResponse(respuesta,status=200,safe=False)
 
+"""
+crear un usuario nuevo en el sistema
+"""
 def insertUser(request):
     userGW=UserGateway(database)
     user=User(json.loads(request.POST['user']))
@@ -238,6 +275,9 @@ def insertUser(request):
         return JsonResponse({'user':user.toJSON()},status=201,safe=False)
     return JsonResponse({},status=500,safe=False)
 
+"""
+actualizar la informacion de un usuario en el sistema
+"""
 def updateUser(request,id):
     respuesta={}
     userGW=UserGateway(database)
@@ -246,6 +286,9 @@ def updateUser(request,id):
     respuesta['user']=userJson
     return JsonResponse(respuesta,status=200,safe=False)
 
+"""
+actualizar algunas propiedades del usuario
+"""
 def patchUser(request,id):
 
     userGW=UserGateway(database)
@@ -254,6 +297,10 @@ def patchUser(request,id):
         return JsonResponse({},status=200,safe=False)
     return JsonResponse({},status=500,safe=False)
 
+
+"""
+borrar un usuario del sistema
+"""
 def deleteUser(request,id):
     userGW=UserGateway(database)
 

@@ -1,3 +1,4 @@
+
 function globalActions(){
     
     var closeContextMenu=function(){

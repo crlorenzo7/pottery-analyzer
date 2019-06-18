@@ -1,12 +1,19 @@
 from analyzer.models.Files.File import File
 from analyzer.models.Files.FileGateway import FileGateway
 
+"""
+clase que encapsula toda la funcionalidad 
+relativa al sistema de archivos
+"""
 class Filesystem:
     db=None
 
     def __init__(self,db):
         self.db=db
 
+    """
+    crea un sistema de archivos nuevo, creando su nodo raiz
+    """
     def create(self,nick):
         file=File()
         file.set_titulo("root")
@@ -17,6 +24,9 @@ class Filesystem:
 
         return file
 
+    """
+    obtiene la informacion de una carpeta y los archivos que contiene
+    """
     def getNode(self,id):
         fileGW=FileGateway(self.db)
         file=fileGW.getFile(id)
@@ -26,6 +36,9 @@ class Filesystem:
             return file
         return None
     
+    """
+    borrar un nodo del sistema de archivos
+    """
     def deleteNode(self,id):
         print(id)
         fileGW=FileGateway(self.db)
@@ -37,11 +50,17 @@ class Filesystem:
             return True
         return False
 
+    """
+    obtener el numero de modelos que tiene el usuario en su sitema
+    """
     def getNumberOfModels(self,id):
         fileGW=FileGateway(self.db)
         numberOfFiles=len(list(fileGW.listFiles({'tipo':'modelo','idUsuario':id})))
         return numberOfFiles
 
+    """
+    mover un archivo(modelo|carpeta) desde una carpeta a otra
+    """
     def move(self,idModel,idFolder):
         fileGW=FileGateway(self.db)
         folder=File(fileGW.getFile(idFolder))

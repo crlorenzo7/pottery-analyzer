@@ -3,13 +3,17 @@ import re
 from analyzer.modules import security
 from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
 
+"""
+
+Filtra las peticiones HTTP, comprobando si el usuario esta identificado
+
+"""
 
 def JWTValidation(get_response):
-    # one-time configuration and initialization
+   
 
     def middleware(request):
-        # code to be executed for each request before
-        # the view is called; equivalent to process_request
+        
         inApi=True
         
         if re.match(('^/?$'),request.path) is not None:

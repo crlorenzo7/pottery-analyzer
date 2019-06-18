@@ -1,5 +1,10 @@
 from analyzer.models.Files.File import File
 
+"""
+clase que encapsula las operaciones relativas a la base de datos
+que involucran a la entidad File
+"""
+
 class FileGateway:
     
     db=None

@@ -1,3 +1,7 @@
+/**
+ * clase que contiene los metodos para pintar y modificar un perfil obtenido
+ */
+
 class Lienzo{
     lienzo=null;
     paths=[];

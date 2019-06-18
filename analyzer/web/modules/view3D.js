@@ -8,7 +8,7 @@ class View3D{
     objeto=null;
     wireframe=null;
     cameraControl=null;
-    view=2;
+    view=0;
     viewBack=true;
     constructor(){};
     _clear(){
@@ -67,6 +67,7 @@ class View3D{
             return Math.abs(volumes);
         }
 
+        // rota un punto alrededor del eje Y
         function rotarPunto(punto, paso, total) {
             var anguloDeg = (360.0 / total);
             var angulo = anguloDeg * ((Math.PI) / 180);
@@ -77,6 +78,7 @@ class View3D{
             return nuevoPunto;
         }
         
+        // rota un perfil alrededor del eje Y
         function generalPerfilRotacion(perfil, paso, total) {
             var nuevoPerfil = [];
             for (var i = 0; i < perfil.length; i++) {
@@ -105,13 +107,6 @@ class View3D{
                         indexAltoMaximo=i;
                     }
                     
-                    /*if(i<perfil.length-1){
-                        if(perfil[i][1]<=perfil[i+1][1] && buscando){
-                            perfilSinTapasFull.push(perfil[i]);
-                        }else{
-                            buscando=false;
-                        }
-                    }*/
                 } 
             }
 
@@ -435,7 +430,6 @@ class View3D{
     
         bgPlane.scale.set($('#'+visorFunctions.contenedor).width() * 2, $('#'+visorFunctions.contenedor).height() * 2, 1);
         bgPlane.position.z = -100;
-        console.log(bgPlane);
     
     
         app.visor.renderer = new THREE.WebGLRenderer();
@@ -462,20 +456,15 @@ class View3D{
         document.getElementById(visorFunctions.contenedor).appendChild(app.visor.renderer.domElement);
     
         var clock = new THREE.Clock();
-        //addCube(6, 4, 6);
-        //addFloor(8000,8000);
+        
         var materialTierra = createEarthMaterial();
-        //var materialNubes = createCloudMaterial();
-        //var materialColor4 = new THREE.MeshBasicMaterial({ color: new THREE.Color(0xff0000) });
-        //materialColor4.transparent = true;
-        //materialColor4.opacity = 1;
+        
         addSphere(4000, 400, 400, materialTierra, 'tierra');
         console.log(visorFunctions.figura);
         crearObjeto(visorFunctions.figura.datos);
-        //addSphere(5 * 1.02, 100, 100, materialNubes, 'nubes');
-        //addSphere(5 * 1.01, 100, 100, materialColor4, 'ozono');
+       
         addLight(0xffffff, { x: 0, y: 1900, z: 0 }, 'hemi', 'luzSolar');
-        //addLight(0x111111, null, 'ambiental', 'luzAmbiental');
+        
         app.visor.sceneBG.add(bgPlane);
     
         //addControlGui(control);
@@ -500,9 +489,6 @@ class View3D{
         render();
     
         function render() {
-            //scene.getObjectByName('tierra').rotation.y = control.rotationSpeed;
-            //scene.getObjectByName('nubes').rotation.y = control.rotationSpeed;
-            //scene.getObjectByName('ozono').material.opacity = 1;
             
             switch(app.visor.view){
                 case 0: app.visor.scene.getObjectByName('figura').visible=true;
@@ -550,9 +536,6 @@ class View3D{
                 app.visor.scene.getObjectByName('figura').material.needsUpdate = true;
                 app.visor.scene.getObjectByName('figura').geometry.uvsNeedUpdate = true;
             });
-            /*texture.wrapS = THREE.RepeatWrapping;
-            texture.wrapT = THREE.RepeatWrapping;
-            texture.repeat.set( 80, 80 );*/
             
         }
 
@@ -578,8 +561,6 @@ class View3D{
 
         function savePly(){
             var exporter = new THREE.PLYExporter();
-            //var scenePly=app.visor.scene.clone(new THREE.Scene);
-            //scenePly.add(app.visor.objeto);
 
             var scenePly = new THREE.Scene();
             scenePly.add(app.visor.objeto.clone());
@@ -674,9 +655,9 @@ class View3D{
         $('#visor [data-type="boton"]').click(analizarBoton);
         $('#visor .titulo-modelo').keypress(
             function(e){
-                console.log('hola1');
+                
                 if(e.which==13){
-                    console.log('hola2');
+                    
                     visorFunctions._setTitulo($(this).html().trim());
                 }
                 $(this).focusout();
