@@ -103,7 +103,6 @@ def signup(request):
             
         user=User(userJson)
         user.set_password(security.createPassword(user.get_password()))
-        print(user.get_password())
         if not userGW.exists(user.get_nick()):
             if userGW.insertUser(user):
                 file=filesystem.create(user.get_nick())
@@ -111,6 +110,7 @@ def signup(request):
                     respuesta['user']=user.toJSON()
                     del respuesta['user']['password']
                     respuesta['root']=file.toJSON()
+                    respuesta['root']['hijos']=[]
                     respuesta['token']=security.generateJWT(user.get_nick())
                     respuesta['totalModelos']=0
                     
